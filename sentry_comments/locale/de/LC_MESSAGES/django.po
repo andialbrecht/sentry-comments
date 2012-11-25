@@ -1,0 +1,39 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-11-25 08:34+0100\n"
+"PO-Revision-Date: 2012-11-25 08:35+0100\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+
+#: plugin.py:19
+msgid "Comments"
+msgstr "Kommentare"
+
+#: plugin.py:21
+msgid "Add comments to sentry events."
+msgstr "Kommentare zu Sentry-Events hinzufügen."
+
+#: templates/sentry_comments/index.html:32
+msgid "Add comment"
+msgstr "Kommentar hinzufügen"
+
+#: templates/sentry_comments/index.html:36
+msgid "Comment"
+msgstr "Kommentar"
+
+#: templates/sentry_comments/index.html:44
+msgid "Post comment"
+msgstr "Kommentar speichern"

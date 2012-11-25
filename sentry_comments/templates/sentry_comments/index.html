@@ -1,0 +1,48 @@
+{% extends "sentry/groups/details.html" %}
+
+{% load i18n %}
+{% load sentry_helpers %}
+
+{% block inner %}
+    {% paginate comments from request as comment_list per_page 25 %}
+
+    {% if comment_list.objects %}
+        {{ comment_list.paging }}
+        <ul class="events no-counts">
+          {% for comment in comment_list.objects %}
+          <li class="event">
+            <div class="details">
+              <div class="meta" style="text-align: right;">
+                <div class="last-seen pretty-date" title="{{ comment.date }}">
+                  {{comment.created|timesince}}</div>
+                <p class="message" style="padding-right: 0px;">
+                  <span class="tag tag-logger">{% if comment.author.get_full_name %}{{ comment.author.get_full_name }}{% else %}{{ comment.author.username }}{% endif %}</span>
+                </p>
+              </div>
+              <p class="message">
+                {{comment.message|urlize|linebreaks}}
+              </p>
+            </div>
+          </li>
+          {% endfor %}
+        </ul>
+    {% endif %}
+
+    <div class="page-header">
+      <h2>{% trans "Add comment" %}</h2>
+    </div>
+    <form action="" method="post" class="form-stacked">
+      <fieldset class="control-group">
+        <label for="id-message">{% trans "Comment" %}</label>
+        {% csrf_token %}
+        <div class="controls">
+          <textarea style="width:98%; height:10em;" id="id-message"
+                    name="message"></textarea>
+        </div>
+      </fieldset>
+      <fieldset class="form-actions">
+        <button type="submit" class="btn btn-primary">{% trans "Post comment" %}</button>
+      </fieldset>
+    </form>
+{% endblock %}
+
