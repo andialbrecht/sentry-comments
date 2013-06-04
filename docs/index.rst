@@ -26,8 +26,9 @@ To install the comments extension run::
 
   pip install sentry-comments
 
-After restarting Sentry a new comments panel appears on the event
-page. Click on the panel title to read or add comments.
+After restarting Sentry you need to enable the plugin for each project on the
+project's setting page. A new comments panel appears on the event page. Click
+on the panel title to read or add comments.
 
 
 Configuration
