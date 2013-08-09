@@ -1,16 +1,17 @@
+from django.conf import settings
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django.utils.translation import ugettext_lazy as _
 
-from sentry.conf import settings
 from sentry.plugins.bases.notify import NotificationPlugin
+from sentry.plugins.sentry_mail.models import MailPlugin
 
 from sentry_comments import VERSION
 from sentry_comments.forms import CommentConfForm
 from sentry_comments.models import GroupComments
 
 
-class CommentsPlugin(NotificationPlugin):
+class CommentsPlugin(MailPlugin):
     """Comments plugin."""
 
     title = _('Comments')
@@ -42,11 +43,6 @@ class CommentsPlugin(NotificationPlugin):
             title = u'%s (%d)' % (title, count)
         return title
 
-    def panels(self, request, group, panel_list, **kwargs):
-        """Panel configuration:"""
-        panel_list.append((self.get_title(group), self.get_url(group)))
-        return panel_list
-
     def view(self, request, group, **kwargs):
         """Display and store comments."""
         if request.method == 'POST':
@@ -77,6 +73,10 @@ class CommentsPlugin(NotificationPlugin):
         """
         return False
 
+    def actions(self, request, group, action_list, **kwargs):
+        action_list.append((self.get_title(group), self.get_url(group)))
+        return action_list
+
     def get_form_initial(self, project=None):
         return {'send_to_members': False}
 
@@ -87,7 +87,7 @@ class CommentsPlugin(NotificationPlugin):
         author = comment.author.get_full_name() or comment.author.username
         subject_prefix = self.get_option('subject_prefix', group.project) or settings.EMAIL_SUBJECT_PREFIX
         subject = _('%(author)s added a comment') % {'author': author}
-        link = '%s/%s/group/%d/actions/comments/' % (settings.URL_PREFIX, group.project.slug, group.id)
+        link = '%s/%s/group/%d/actions/comments/' % (settings.SENTRY_URL_PREFIX, group.project.slug, group.id)
         body = render_to_string('sentry_comments/emails/comment.txt', {
             'group': group, 'comment': comment, 'link': link,
             'author': author})

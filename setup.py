@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 
 
 install_requires = [
-    'sentry>=5.0.14',
+    'sentry>=6.0.1',
 ]
 
 
