@@ -34,9 +34,7 @@ on the panel title to read or add comments.
 Configuration
 -------------
 
-To receive email notification about new comments go to the plugin
-settings. By default the comments plugin doesn't send email
-notifications.
+There are no configuration options yet.
 
 
 Resources
