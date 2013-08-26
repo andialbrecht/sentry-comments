@@ -81,13 +81,14 @@ class CommentsPlugin(MailPlugin):
         return {'send_to_members': False}
 
     def _send_mail(self, comment, group):
-        recipients = self.get_send_to(group.project)
+        project = group.project
+        recipients = self.get_send_to(project)
         if not recipients:
             return
         author = comment.author.get_full_name() or comment.author.username
         subject_prefix = self.get_option('subject_prefix', group.project) or settings.EMAIL_SUBJECT_PREFIX
         subject = _('%(author)s added a comment') % {'author': author}
-        link = '%s/%s/group/%d/actions/comments/' % (settings.SENTRY_URL_PREFIX, group.project.slug, group.id)
+        link = '%s/%s/%s/group/%d/actions/comments/' % (settings.SENTRY_URL_PREFIX, project.team.slug, project.slug, group.id)
         body = render_to_string('sentry_comments/emails/comment.txt', {
             'group': group, 'comment': comment, 'link': link,
             'author': author})
