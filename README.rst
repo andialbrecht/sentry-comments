@@ -11,9 +11,17 @@ to sentry events.
 Installation
 ============
 
-::
+To install the comments extension run::
 
   pip install sentry-comments
+
+Then add ``sentry_comments`` to the ``INSTALLED_APPS`` list in your Sentry
+configuration::
+
+    INSTALLED_APPS += ('sentry_comments',)
+
+Run :command:`sentry --config=your.conf.py upgrade` to create the new tables
+required by this plugin.
 
 
 License
