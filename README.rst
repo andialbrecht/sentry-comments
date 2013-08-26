@@ -20,7 +20,7 @@ configuration::
 
     INSTALLED_APPS += ('sentry_comments',)
 
-Run :command:`sentry --config=your.conf.py upgrade` to create the new tables
+Run ``sentry --config=your.conf.py upgrade`` to create the new tables
 required by this plugin.
 
 
