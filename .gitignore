@@ -1,3 +1,8 @@
 docs/_build/
 *.egg-info/
 dist/
+demo/bin
+demo/lib
+demo/include
+demo/local
+demo/sentry.db
