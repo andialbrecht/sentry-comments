@@ -14,7 +14,7 @@ with open('README.rst') as f:
 
 setup(
     name='sentry-comments',
-    version='0.2.0',
+    version='0.2.1',
     author='Andi Albrecht',
     author_email='albrecht.andi@gmail.com',
     url='https://github.com/andialbrecht/sentry-comments',
@@ -26,7 +26,7 @@ setup(
     entry_points={
         'sentry.apps': [
             'sentry_comments = sentry_comments',
-            ],
+        ],
         'sentry.plugins': [
             'sentry_comments = sentry_comments.plugin:CommentsPlugin'
         ],

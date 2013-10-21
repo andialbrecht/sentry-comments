@@ -1,4 +1,6 @@
 include setup.py README.rst MANIFEST.in LICENSE
 recursive-include sentry_comments *
+include demo/mkdemo.sh
+include demo/sentry.conf.py
 global-exclude *~
 global-exclude *.pyc

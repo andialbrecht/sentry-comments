@@ -1,3 +1,16 @@
+Release 0.2.1 (Okt 21, 2013)
+----------------------------
+* Add script to run local demo.
+* Fix broken links in emails (issue2).
+* Fix unnecessary quoting of HTML in mails (issue4).
+
+
+Release 0.2.0 (Aug 08, 2013)
+----------------------------
+
+* Update to Sentry >= 6.0.1
+
+
 Release 0.1.0 (Nov 26, 2012)
 ----------------------------
 
