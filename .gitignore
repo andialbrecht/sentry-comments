@@ -5,4 +5,5 @@ demo/bin
 demo/lib
 demo/include
 demo/local
+demo/share
 demo/sentry.db
