@@ -20,6 +20,8 @@ configuration::
 
     INSTALLED_APPS += ('sentry_comments',)
 
+(See https://github.com/getsentry/sentry/issues/1042 why this is needed.)
+
 Run ``sentry --config=your.conf.py upgrade`` to create the new tables
 required by this plugin.
 
