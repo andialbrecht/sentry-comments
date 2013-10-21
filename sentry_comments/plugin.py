@@ -1,6 +1,6 @@
 from django.conf import settings
 from django.core.mail import EmailMultiAlternatives
-from django.template.loader import render_to_string
+from django.template import loader, Context
 from django.utils.translation import ugettext_lazy as _
 
 from sentry.plugins.bases.notify import NotificationPlugin
@@ -89,9 +89,11 @@ class CommentsPlugin(MailPlugin):
         subject_prefix = self.get_option('subject_prefix', group.project) or settings.EMAIL_SUBJECT_PREFIX
         subject = _('%(author)s added a comment') % {'author': author}
         link = '%s/%s/%s/group/%d/actions/comments/' % (settings.SENTRY_URL_PREFIX, project.team.slug, project.slug, group.id)
-        body = render_to_string('sentry_comments/emails/comment.txt', {
+        tpl = loader.get_template('sentry_comments/emails/comment.txt')
+        body = tpl.render(Context({
             'group': group, 'comment': comment, 'link': link,
-            'author': author})
+            'author': author
+        }))
 
         msg = EmailMultiAlternatives(
             '%s%s' % (subject_prefix, subject),

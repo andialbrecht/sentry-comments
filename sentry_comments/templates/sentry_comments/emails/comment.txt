@@ -1,5 +1,5 @@
 {{ author }} added the following comment:
 
-{{ comment.message }}
+{{ comment.message|safe }}
 
 View online: {{ link }}
