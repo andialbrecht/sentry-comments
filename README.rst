@@ -26,6 +26,17 @@ Run ``sentry --config=your.conf.py upgrade`` to create the new tables
 required by this plugin.
 
 
+Demo
+====
+
+To run a demo instance with this plugin locally::
+
+  cd demo/
+  ./mkdemo.sh
+
+You'll need ``virtualenv`` in your PATH to run this script.
+
+
 License
 =======
 
