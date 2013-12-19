@@ -7,6 +7,9 @@ to sentry events.
 .. image:: https://sentry-comments.readthedocs.org/en/latest/_images/event.png
    :width: 90%
 
+.. image:: https://travis-ci.org/andialbrecht/sentry-comments.png?branch=master
+   :target: https://travis-ci.org/andialbrecht/sentry-comments
+
 
 Installation
 ============
