@@ -1,10 +1,20 @@
 language: python
 python:
-  - "2.7"
+- '2.7'
+env:
+  global:
+    - "ARTIFACTS_AWS_REGION=us-west-2"
+    - "ARTIFACTS_S3_BUCKET=travis-sentry-comments"
+    - secure: "EIbXjDCXbzJ4AV/vPwLoDkjpYAevXdRiTlHLw55PbY9nvNA/8BKTGohb92GpjoV+euMP2z3AHoFmeglKhTFTvBGKK46aNdNVpe6KaV1ivQz+741aWF9yECgpZE4N7xFqaRPz+Kg0LOObi66GXZ4W+TgJ5ij4IvprcnX8susu+Fk="
 before_install:
-  - "export DISPLAY=:99.0"
-  - "sh -e /etc/init.d/xvfb start"
-  - "wget http://selenium.googlecode.com/files/selenium-server-standalone-2.38.0.jar"
-  - "java -jar selenium-server-standalone-2.38.jar &"
-install: "pip install tox"
+- export DISPLAY=:99.0
+- sh -e /etc/init.d/xvfb start
+- wget http://selenium.googlecode.com/files/selenium-server-standalone-2.38.0.jar
+- java -jar selenium-server-standalone-2.38.0.jar &
+after_failure:
+- tar cvfz test_results_$TRAVIS_BUILD_ID-$TRAVIS_JOB_ID.tgz test_results/
+- "travis-artifacts upload --path test_results_$TRAVIS_BUILD_ID-$TRAVIS_JOB_ID.tgz"
+
+install: pip install tox
 script: tox
+
