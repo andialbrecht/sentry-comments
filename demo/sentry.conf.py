@@ -7,7 +7,7 @@ import os.path
 
 CONF_ROOT = os.path.dirname(__file__)
 
-ALLOWED_HOSTS = ['localhost']
+ALLOWED_HOSTS = ['localhost', '0.0.0.0:9000']
 INSTALLED_APPS += ('sentry_comments',)
 
 DATABASES = {
