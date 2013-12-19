@@ -10,9 +10,9 @@ before_install:
 - export DISPLAY=:99.0
 - sh -e /etc/init.d/xvfb start
 - wget http://selenium.googlecode.com/files/selenium-server-standalone-2.38.0.jar
-- java -jar selenium-server-standalone-2.38.0.jar &
+- java -jar selenium-server-standalone-2.38.0.jar &> selenium.log &
 after_failure:
-- tar cvfz test_results_$TRAVIS_BUILD_ID-$TRAVIS_JOB_ID.tgz test_results/
+- tar cvfz test_results_$TRAVIS_BUILD_ID-$TRAVIS_JOB_ID.tgz selenium.log test_results/
 - "travis-artifacts upload --path test_results_$TRAVIS_BUILD_ID-$TRAVIS_JOB_ID.tgz"
 
 install: pip install tox
