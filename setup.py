@@ -3,9 +3,10 @@
 from setuptools import setup, find_packages
 
 
-install_requires = [
-    'sentry>=6.0.1,<6.4',
-]
+# install_requires = [
+#     'sentry>=6.0.1,<6.4',
+# ]
+install_requires = ['sentry']
 
 
 with open('README.rst') as f:

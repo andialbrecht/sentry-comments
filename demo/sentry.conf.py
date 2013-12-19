@@ -90,7 +90,7 @@ DATABASES = {
 ################
 
 # You MUST configure the absolute URI root for Sentry:
-SENTRY_URL_PREFIX = 'http://sentry.example.com'  # No trailing slash!
+SENTRY_URL_PREFIX = 'http://localhost:9000'  # No trailing slash!
 
 # If you're using a reverse proxy, you should enable the X-Forwarded-Proto
 # header, and uncomment the following setting
@@ -122,6 +122,8 @@ EMAIL_USE_TLS = False
 
 # The email address to send on behalf of
 SERVER_EMAIL = 'root@localhost'
+
+USE_I18N = False
 
 ###########
 ## etc. ##

@@ -7,3 +7,7 @@ demo/include
 demo/local
 demo/share
 demo/sentry.db
+.tox/
+test_results/
+htmlcov/
+.coverage
