@@ -3,9 +3,10 @@ python:
 - '2.7'
 env:
   global:
-    - "ARTIFACTS_AWS_REGION=us-west-2"
-    - "ARTIFACTS_S3_BUCKET=travis-sentry-comments"
-    - secure: "EIbXjDCXbzJ4AV/vPwLoDkjpYAevXdRiTlHLw55PbY9nvNA/8BKTGohb92GpjoV+euMP2z3AHoFmeglKhTFTvBGKK46aNdNVpe6KaV1ivQz+741aWF9yECgpZE4N7xFqaRPz+Kg0LOObi66GXZ4W+TgJ5ij4IvprcnX8susu+Fk="
+  - ARTIFACTS_AWS_REGION=us-west-2
+  - ARTIFACTS_S3_BUCKET=travis-sentry-comments
+  - secure: Nfyqcn0tUIWFejvWbnGoX4YObju6HOVbPwfaapvZy/OC/EzaA3zWfMWgLq1jrgMIbfFUwFMi/yvD59R4T1PmPLZu1Mogp2Fc/MbmVGl5u02sZR1ggJAeq7HkBEwP6Peu+WNdEHyPmv2b5qxYuonLgwmHs1srKS3qPJoHE/28FUA=
+  - secure: FO8kbK56HG7N+LbCUjkadJV5gYJfnARP0tW0K8SfgKbh6JY6K0PEYuHBfZIyc9i3ekhPC6uUDR0kAJ75EEYs08fA4q41oCi6TXEBHBb249Yhtq1ELS6Azlu/AFyb0mBt12Y58ULIq+Sa8bxMO8yCaAjQ2rhs9NfvgKwgaXvO3nU=
 before_install:
 - export DISPLAY=:99.0
 - sh -e /etc/init.d/xvfb start
@@ -13,8 +14,6 @@ before_install:
 - java -jar selenium-server-standalone-2.38.0.jar &> selenium.log &
 after_failure:
 - tar cvfz test_results_$TRAVIS_BUILD_ID-$TRAVIS_JOB_ID.tgz selenium.log test_results/
-- "travis-artifacts upload --path test_results_$TRAVIS_BUILD_ID-$TRAVIS_JOB_ID.tgz"
-
+- travis-artifacts upload --path test_results_$TRAVIS_BUILD_ID-$TRAVIS_JOB_ID.tgz
 install: pip install tox
 script: tox
-
