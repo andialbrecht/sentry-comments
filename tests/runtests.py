@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import os
+import shutil
 import subprocess
 import sys
 import time
@@ -11,15 +12,23 @@ PROJECT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 DEMO_DIR = os.path.join(PROJECT_DIR, 'demo')
 
 
-def _start_sentry(bindir, sitepackages):
-    config = os.path.join(DEMO_DIR, 'sentry.conf.py')
+def _start_sentry(bindir, sitepackages, envname):
+    # prepare test config
+    shutil.copy(os.path.join(DEMO_DIR, 'sentry.conf.py'),
+                os.path.join(DEMO_DIR, 'sentry_test.conf.py'))
+    config = os.path.join(DEMO_DIR, 'sentry_test.conf.py')
+    with open(config, 'a') as f:
+        f.write('\n')
+        f.write("EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'\n")
+        f.write("EMAIL_FILE_PATH = '/tmp/test-mails-{}'\n".format(envname))
     conf_arg = '--config={}'.format(config)
     # setup DB
     sentry = os.path.join(bindir, 'sentry')
     if os.path.exists(os.path.join(DEMO_DIR, 'sentry.db')):
         os.remove(os.path.join(DEMO_DIR, 'sentry.db'))
-    subprocess.check_call([sentry, conf_arg, 'syncdb', '--all', '--noinput'])
-    subprocess.check_call([sentry, conf_arg, 'migrate', '--fake'])
+    subprocess.check_call([sentry, conf_arg, 'syncdb', '-v', '0',
+                           '--all', '--noinput'])
+    subprocess.check_call([sentry, conf_arg, 'migrate', '--fake', '-v', '0'])
     subprocess.check_call([
         sentry, conf_arg, 'loaddata',
         os.path.join(PROJECT_DIR, 'tests', 'demo_user.json')]
@@ -27,7 +36,7 @@ def _start_sentry(bindir, sitepackages):
     coverage = os.path.join(bindir, 'coverage')
     p_sentry = subprocess.Popen(
         [coverage, 'run', '--source={}/sentry_comments'.format(sitepackages),
-         sentry, conf_arg, 'start'])
+         sentry, conf_arg, 'start', '-v', '0'])
     # wait for Sentry to come up
     start = time.time()
     timeout = start + 10
@@ -50,6 +59,7 @@ def _start_pybot(bindir, envname):
     pybot = os.path.join(bindir, 'pybot')
     return subprocess.Popen([
         pybot, '--outputdir={}'.format(output_dir),
+        '--variable', 'INBOX:/tmp/test-mails-{}'.format(envname),
         os.path.join(PROJECT_DIR, 'tests')
     ])
 
@@ -57,7 +67,7 @@ def _start_pybot(bindir, envname):
 def main(bindir, envname, sitepackages):
     p_sentry = None
     try:
-        p_sentry = _start_sentry(bindir, sitepackages)
+        p_sentry = _start_sentry(bindir, sitepackages, envname)
         if p_sentry is None:
             return 1
         p_pybot = _start_pybot(bindir, envname)

@@ -9,6 +9,7 @@ ${SERVER}           http://localhost:9000
 ${BROWSER}          firefox
 ${SE_REMOTE_HUB}    http://127.0.0.1:4444/wd/hub
 ${LOGIN_URL}        ${SERVER}/login
+${INBOX}       /tmp/test-mails
 
 
 

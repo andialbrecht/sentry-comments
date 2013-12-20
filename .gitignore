@@ -11,3 +11,4 @@ demo/sentry.db
 test_results/
 htmlcov/
 .coverage
+demo/sentry_test.conf.py
