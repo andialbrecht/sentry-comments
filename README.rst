@@ -1,14 +1,14 @@
 sentry-comments
 ===============
 
+.. image:: https://travis-ci.org/andialbrecht/sentry-comments.png?branch=master
+   :target: https://travis-ci.org/andialbrecht/sentry-comments
+
 sentry-comments is an extension for Sentry which lets you add comments
 to sentry events.
 
 .. image:: https://sentry-comments.readthedocs.org/en/latest/_images/event.png
    :width: 90%
-
-.. image:: https://travis-ci.org/andialbrecht/sentry-comments.png?branch=master
-   :target: https://travis-ci.org/andialbrecht/sentry-comments
 
 
 Installation
