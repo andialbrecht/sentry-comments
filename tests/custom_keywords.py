@@ -10,6 +10,8 @@ def generate_event(msg, dsn):
 
 def clear_inbox(maildir):
     print('Clearing inbox at {}'.format(maildir))
+    if not os.path.isdir(maildir):
+        return
     for fname in os.listdir(maildir):
         os.remove(os.path.join(maildir, fname))
 
