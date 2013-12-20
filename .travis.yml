@@ -3,7 +3,7 @@ python:
 - '2.7'
 env:
   global:
-  - ARTIFACTS_AWS_REGION=us-west-2
+  - ARTIFACTS_AWS_REGION=us-east-1
   - ARTIFACTS_S3_BUCKET=travis-sentry-comments
   - secure: NStoOoQHEtYB1ClkpjgVHYQHYEXvEZqqfKMRpPd+Z0Z6rNeZXhilKzCvqvsm5lqd53kPPGYnEfVZgL51ulGygICgtEuMfofxIZwgLGcMet0LWpD1pyqqmFQ9PrPurG/g6pxGNtNxG13bxTwXlqNIcvht2i7w1ie28+wJRMG7x8c=
   - secure: AjimGNmh69U0gX5Qug1c7LlxIXx4e6g1CC82wvmUBhCkJBRBnHXmIZU1PwMcLf/qZy718NQI8BuF+uhOKJOoI6pevHZoCvIjoH5Yxan/Y+sE3cUFG96THFhpwDERJxkSNvB1lOD0l3yOrUgaUj/MaAQLMtOG3PbYOVectxxzXg8=
