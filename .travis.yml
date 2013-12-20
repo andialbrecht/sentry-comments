@@ -3,19 +3,19 @@ python:
 - '2.7'
 env:
   global:
-    - ARTIFACTS_AWS_REGION=us-west-2
-    - ARTIFACTS_S3_BUCKET=travis-sentry-comments
-    - secure: Nfyqcn0tUIWFejvWbnGoX4YObju6HOVbPwfaapvZy/OC/EzaA3zWfMWgLq1jrgMIbfFUwFMi/yvD59R4T1PmPLZu1Mogp2Fc/MbmVGl5u02sZR1ggJAeq7HkBEwP6Peu+WNdEHyPmv2b5qxYuonLgwmHs1srKS3qPJoHE/28FUA=
-    - secure: FO8kbK56HG7N+LbCUjkadJV5gYJfnARP0tW0K8SfgKbh6JY6K0PEYuHBfZIyc9i3ekhPC6uUDR0kAJ75EEYs08fA4q41oCi6TXEBHBb249Yhtq1ELS6Azlu/AFyb0mBt12Y58ULIq+Sa8bxMO8yCaAjQ2rhs9NfvgKwgaXvO3nU=
+  - ARTIFACTS_AWS_REGION=us-west-2
+  - ARTIFACTS_S3_BUCKET=travis-sentry-comments
+  - secure: NStoOoQHEtYB1ClkpjgVHYQHYEXvEZqqfKMRpPd+Z0Z6rNeZXhilKzCvqvsm5lqd53kPPGYnEfVZgL51ulGygICgtEuMfofxIZwgLGcMet0LWpD1pyqqmFQ9PrPurG/g6pxGNtNxG13bxTwXlqNIcvht2i7w1ie28+wJRMG7x8c=
+  - secure: AjimGNmh69U0gX5Qug1c7LlxIXx4e6g1CC82wvmUBhCkJBRBnHXmIZU1PwMcLf/qZy718NQI8BuF+uhOKJOoI6pevHZoCvIjoH5Yxan/Y+sE3cUFG96THFhpwDERJxkSNvB1lOD0l3yOrUgaUj/MaAQLMtOG3PbYOVectxxzXg8=
 before_script:
-  - gem install travis-artifacts
+- gem install travis-artifacts
 before_install:
-  - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start
-  - wget http://selenium.googlecode.com/files/selenium-server-standalone-2.38.0.jar
-  - java -jar selenium-server-standalone-2.38.0.jar &> selenium.log &
+- export DISPLAY=:99.0
+- sh -e /etc/init.d/xvfb start
+- wget http://selenium.googlecode.com/files/selenium-server-standalone-2.38.0.jar
+- java -jar selenium-server-standalone-2.38.0.jar &> selenium.log &
 after_failure:
-  - tar cvfz test_results_$TRAVIS_BUILD_ID-$TRAVIS_JOB_ID.tgz selenium.log test_results/
-  - travis-artifacts upload --path test_results_$TRAVIS_BUILD_ID-$TRAVIS_JOB_ID.tgz
+- tar cvfz test_results_$TRAVIS_BUILD_ID-$TRAVIS_JOB_ID.tgz selenium.log test_results/
+- travis-artifacts upload --path test_results_$TRAVIS_BUILD_ID-$TRAVIS_JOB_ID.tgz
 install: pip install tox
 script: tox
