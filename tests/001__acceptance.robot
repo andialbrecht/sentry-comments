@@ -19,7 +19,7 @@ Add Comment On Test Event
     Go To First Event
     Clear Inbox  ${INBOX}
     Click Link  Comments
-    Input Text  message  This is a test comment.
+    Add Comment  This is a test comment.
     Click Button  Post comment
     Page Should Contain  This is a test comment.
     Page Should Contain Link  Comments (1)

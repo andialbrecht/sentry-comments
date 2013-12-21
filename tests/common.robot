@@ -35,3 +35,8 @@ Go To Test Project Stream
 
 Go To First Event
     Click Link  xpath=//div[@id="event_list"]//a[1]
+
+
+Add Comment  [Arguments]  ${comment}
+    Wait Until Element Is Visible  xpath=//textarea[@name="message"]
+    Input Text  message  ${comment}
