@@ -8,7 +8,7 @@ install: bin/sentry
 
 
 bin/sentry: bin/pip
-	bin/pip install ../
+	cd .. && demo/bin/python setup.py develop
 
 bin/pip:
 	virtualenv .
