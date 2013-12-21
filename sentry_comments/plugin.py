@@ -3,7 +3,6 @@ from django.core.mail import EmailMultiAlternatives
 from django.template import loader, Context
 from django.utils.translation import ugettext_lazy as _
 
-from sentry.plugins.bases.notify import NotificationPlugin
 from sentry.plugins.sentry_mail.models import MailPlugin
 
 from sentry_comments import VERSION
@@ -28,7 +27,8 @@ class CommentsPlugin(MailPlugin):
 
     resource_links = [
         (_('Documentation'), 'http://sentry-comments.readthedocs.org'),
-        (_('Bug Tracker'), 'https://github.com/andialbrecht/sentry-comments/issues'),
+        (_('Bug Tracker'),
+         'https://github.com/andialbrecht/sentry-comments/issues'),
         (_('Source'), 'https://github.com/andialbrecht/sentry-comments'),
     ]
 
@@ -52,8 +52,9 @@ class CommentsPlugin(MailPlugin):
                                         message=message.strip())
                 comment.save()
                 self._send_mail(comment, group)
+        query = GroupComments.objects.filter(group=group).order_by('-created')
         return self.render('sentry_comments/index.html', {
-            'comments': GroupComments.objects.filter(group=group).order_by('-created'),
+            'comments': query,
             'group': group,
         })
 
@@ -86,9 +87,13 @@ class CommentsPlugin(MailPlugin):
         if not recipients:
             return
         author = comment.author.get_full_name() or comment.author.username
-        subject_prefix = self.get_option('subject_prefix', group.project) or settings.EMAIL_SUBJECT_PREFIX
-        subject = _('%(author)s added a comment on %(event)s') % {'author': author, 'event': group.error()}
-        link = '%s/%s/%s/group/%d/actions/comments/' % (settings.SENTRY_URL_PREFIX, project.team.slug, project.slug, group.id)
+        subject_prefix = self.get_option('subject_prefix', group.project)
+        subject_prefix = subject_prefix or settings.EMAIL_SUBJECT_PREFIX
+        subject = (_('%(author)s added a comment on %(event)s')
+                   % {'author': author, 'event': group.error()})
+        link = ('%s/%s/%s/group/%d/actions/comments/'
+                % (settings.SENTRY_URL_PREFIX, project.team.slug,
+                   project.slug, group.id))
         tpl = loader.get_template('sentry_comments/emails/comment.txt')
         body = tpl.render(Context({
             'group': group, 'comment': comment, 'link': link,
