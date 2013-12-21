@@ -1,3 +1,9 @@
+Development
+-----------
+* Add support for Sentry >= 6.4.
+* Add acceptance tests.
+
+
 Release 0.2.1 (Okt 21, 2013)
 ----------------------------
 * Add script to run local demo.
@@ -7,11 +13,9 @@ Release 0.2.1 (Okt 21, 2013)
 
 Release 0.2.0 (Aug 08, 2013)
 ----------------------------
-
 * Update to Sentry >= 6.0.1
 
 
 Release 0.1.0 (Nov 26, 2012)
 ----------------------------
-
 * First release.
