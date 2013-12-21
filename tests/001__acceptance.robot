@@ -35,3 +35,7 @@ Mail Should Be Sent
     Inbox Should Contain Num Mails  ${INBOX}  1
     Mail Should Contain Text  ${INBOX}  1  This is a test comment.
     Mail Should Contain Text  ${INBOX}  1  admin@example.com
+
+
+Mail Has Speaking Subject
+    Mail Subject Should Be  ${INBOX}  1  [Sentry] admin added a comment on Test Event 1

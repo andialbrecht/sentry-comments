@@ -87,7 +87,7 @@ class CommentsPlugin(MailPlugin):
             return
         author = comment.author.get_full_name() or comment.author.username
         subject_prefix = self.get_option('subject_prefix', group.project) or settings.EMAIL_SUBJECT_PREFIX
-        subject = _('%(author)s added a comment') % {'author': author}
+        subject = _('%(author)s added a comment on %(event)s') % {'author': author, 'event': group.error()}
         link = '%s/%s/%s/group/%d/actions/comments/' % (settings.SENTRY_URL_PREFIX, project.team.slug, project.slug, group.id)
         tpl = loader.get_template('sentry_comments/emails/comment.txt')
         body = tpl.render(Context({

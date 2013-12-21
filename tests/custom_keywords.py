@@ -1,3 +1,4 @@
+import email.parser
 import os
 
 from raven import Client
@@ -39,3 +40,18 @@ def mail_should_contain_text(maildir, num, text):
         content = f.read()
     if not text in content:
         raise AssertionError('Mail does not contain text.')
+
+
+def mail_subject_should_be(maildir, num, subject):
+    print('Testing if mail {} in {} has subject {}.'.format(
+        num, maildir, subject))
+    mails = os.listdir(maildir)
+    num = int(num)
+    if len(mails) < num:
+        raise AssertionError('Not enough mails in inbox (found {}).'.format(len(mails)))
+    fname = mails[num - 1]
+    with open(os.path.join(maildir, fname)) as f:
+        content = f.read()
+    msg = email.parser.Parser().parsestr(content)
+    if not msg['Subject'] == subject:
+        raise AssertionError('Subject doesn\'t match (found: {}).'.format(msg['Subject']))
