@@ -1,3 +1,8 @@
+Before Release
+* Review documentation
+* Code cleanup
+
+Misc
 * Add reply to function
 * Add some markup (e.g. usual text formatting markup, reference to other events)
 * Add more translations (use transifex?)
