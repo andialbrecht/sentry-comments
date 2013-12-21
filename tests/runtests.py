@@ -29,9 +29,13 @@ def _start_sentry(bindir, sitepackages, envname):
     subprocess.check_call([sentry, conf_arg, 'syncdb', '-v', '0',
                            '--all', '--noinput'])
     subprocess.check_call([sentry, conf_arg, 'migrate', '--fake', '-v', '0'])
+    if envname in ('sentry60', 'sentry61', 'sentry62', 'sentry63'):
+        fname = 'demo_user.json'
+    else:
+        fname = 'demo_user64.json'
     subprocess.check_call([
         sentry, conf_arg, 'loaddata',
-        os.path.join(PROJECT_DIR, 'tests', 'demo_user.json')]
+        os.path.join(PROJECT_DIR, 'tests', fname)]
     )
     coverage = os.path.join(bindir, 'coverage')
     p_sentry = subprocess.Popen(
