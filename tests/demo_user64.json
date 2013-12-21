@@ -1,0 +1,18 @@
+[
+{
+  "pk": 1, 
+  "model": "sentry.user", 
+  "fields": {
+    "username": "admin", 
+    "first_name": "", 
+    "last_name": "", 
+    "is_active": true, 
+    "is_superuser": true, 
+    "is_staff": true, 
+    "last_login": "2013-12-21T06:56:05.095Z", 
+    "password": "pbkdf2_sha256$10000$3qz47sFnWzpY$fSErCvpPqK7zgk7KdIe8yUSXN8iOaDVQFYAM0ZNFi54=", 
+    "email": "admin@example.com", 
+    "date_joined": "2013-12-21T06:56:05.095Z"
+  }
+}
+]
