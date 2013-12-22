@@ -8,6 +8,10 @@ Welcome to sentry-comments's documentation!
 
 sentry-comments is an extension for Sentry to add comments to events.
 
+**Important Notice** Sentry (>=6.4) supports adding notes to events out-of-the-
+box. So there's no need for this extension anymore.
+
+
 Comments show up as a new action on the event page:
 
 .. image:: img/event.png

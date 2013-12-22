@@ -7,6 +7,9 @@ sentry-comments
 sentry-comments is an extension for Sentry which lets you add comments
 to sentry events.
 
+**Important Notice** Sentry (>=6.4) supports adding notes to events out-of-the-
+box. So there's no need for this extension anymore.
+
 .. image:: https://sentry-comments.readthedocs.org/en/latest/_images/event.png
    :width: 90%
 
