@@ -51,7 +51,8 @@ class CommentsPlugin(MailPlugin):
                 comment = GroupComments(group=group, author=request.user,
                                         message=message.strip())
                 comment.save()
-                self._send_mail(comment, group)
+                if request.POST.get('sendmail', ''):
+                    self._send_mail(comment, group)
         query = GroupComments.objects.filter(group=group).order_by('-created')
         return self.render('sentry_comments/index.html', {
             'comments': query,

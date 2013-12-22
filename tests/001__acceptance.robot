@@ -39,3 +39,16 @@ Mail Should Be Sent
 
 Mail Has Speaking Subject
     Mail Subject Should Be  ${INBOX}  1  [Sentry] admin added a comment on Test Event 1
+
+
+Write Comments Without Sending Mail
+    Clear Inbox  ${INBOX}
+    Go To Test Project Stream
+    Go To First Event
+    Click Link  Comments (1)
+    Add Comment  This is a second test comment.
+    Checkbox Should Be Selected  id_sendmail
+    Unselect Checkbox  id_sendmail
+    Click Button  Post comment
+    Page Should Contain Link  Comments (2)
+    Inbox Should Contain Num Mails  ${INBOX}  0

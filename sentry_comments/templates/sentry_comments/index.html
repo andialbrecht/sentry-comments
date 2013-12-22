@@ -39,6 +39,13 @@
           <textarea style="width:98%; height:10em;" id="id-message"
                     name="message"></textarea>
         </div>
+        <div class="controls">
+          <label for="id_sendmail" class="checkbox">
+            <input class="checkboxinput" id="id_sendmail" name="sendmail" type="checkbox" checked="checked">
+              {% trans "Send mail" %}
+            <p id="hint_id_sendmail" class="help-block">{% trans "Uncheck to don't send notification mails for this comment." %}</p>
+          </label>
+        </div>
       </fieldset>
       <fieldset class="form-actions">
         <button type="submit" class="btn btn-primary">{% trans "Post comment" %}</button>

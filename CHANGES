@@ -3,6 +3,7 @@ Development
 * Add support for Sentry >= 6.4.
 * Add acceptance tests.
 * Include event message in mail subject (issue6).
+* Add option to skip mail notification when adding a comment (issue8).
 
 
 Release 0.2.1 (Okt 21, 2013)
