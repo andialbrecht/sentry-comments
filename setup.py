@@ -15,7 +15,7 @@ with open('README.rst') as f:
 
 setup(
     name='sentry-comments',
-    version='0.3.0-dev',
+    version='0.3.0',
     author='Andi Albrecht',
     author_email='albrecht.andi@gmail.com',
     url='https://github.com/andialbrecht/sentry-comments',
