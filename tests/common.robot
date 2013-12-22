@@ -37,6 +37,14 @@ Go To First Event
     Click Link  xpath=//div[@id="event_list"]//a[1]
 
 
+Wait For Event On Stream  [Arguments]  ${message}
+    Wait Until Element Is Visible  xpath=//h3[following-sibling::*[1][text()="${message}"]]/a
+
+
+Go To Event  [Arguments]  ${message}
+    Click Link  xpath=//h3[following-sibling::*[1][text()="${message}"]]/a
+
+
 Add Comment  [Arguments]  ${comment}
     Wait Until Element Is Visible  xpath=//textarea[@name="message"]
     Input Text  message  ${comment}

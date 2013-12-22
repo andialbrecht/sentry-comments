@@ -1,10 +1,12 @@
 from django.conf import settings
 from django.contrib import messages
 from django.core.mail import EmailMultiAlternatives
+from django.http import HttpResponseRedirect
 from django.template import loader, Context
 from django.utils.translation import ugettext_lazy as _
 
 from sentry.plugins.sentry_mail.models import MailPlugin
+from sentry.web import api
 
 from sentry_comments import VERSION
 from sentry_comments.forms import CommentConfForm
@@ -52,9 +54,14 @@ class CommentsPlugin(MailPlugin):
                 comment = GroupComments(group=group, author=request.user,
                                         message=message.strip())
                 comment.save()
+                msg = _(u'Comment added.')
                 if request.POST.get('sendmail', ''):
                     self._send_mail(comment, group)
-                messages.success(request, _(u'Comment added.'))
+                if 'postresolve' in request.POST:
+                    self._resolve_group(request, group)
+                    msg = _(u'Comment added and event marked as resolved.')
+                messages.success(request, msg)
+                return HttpResponseRedirect(request.path)
         query = GroupComments.objects.filter(group=group).order_by('-created')
         return self.render('sentry_comments/index.html', {
             'comments': query,
@@ -83,6 +90,9 @@ class CommentsPlugin(MailPlugin):
 
     def get_form_initial(self, project=None):
         return {'send_to_members': False}
+
+    def _resolve_group(self, request, group):
+        api.resolve_group(request, group.team, group.project, group.pk)
 
     def _send_mail(self, comment, group):
         project = group.project

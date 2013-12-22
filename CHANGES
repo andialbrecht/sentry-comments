@@ -4,6 +4,7 @@ Development
 * Add acceptance tests.
 * Include event message in mail subject (issue6).
 * Add option to skip mail notification when adding a comment (issue8).
+* Add option to resolve event when posting a comment (issue9).
 
 
 Release 0.2.1 (Okt 21, 2013)

@@ -48,7 +48,10 @@
         </div>
       </fieldset>
       <fieldset class="form-actions">
-        <button type="submit" class="btn btn-primary">{% trans "Post comment" %}</button>
+        <button type="submit" class="btn btn-primary pull-right">{% trans "Post comment" %}</button>
+        <button type="submit" name="postresolve" class="btn">
+          {% trans "Post Comment and Resolve Event" %}
+        </button>
       </fieldset>
     </form>
 {% endblock %}

@@ -53,3 +53,17 @@ Write Comments Without Sending Mail
     Click Button  Post comment
     Page Should Contain Link  Comments (2)
     Inbox Should Contain Num Mails  ${INBOX}  0
+
+
+Post Comment And Resolve Event
+    Generate Event  This should be closed  ${TEST_PROJECT_DSN}
+    Go To Test Project Stream
+    Wait For Event On Stream  This should be closed
+    Go To Event  This should be closed
+    ${event_url}=  Get Location
+    Click Link  Comments
+    Add Comment  This was just a fake event.
+    Click Button  Post Comment and Resolve Event
+    Page Should Contain  Comment added and event marked as resolved.
+    Go To  ${event_url}
+    Page Should Contain Element  xpath=//dd[text()="Resolved"]
