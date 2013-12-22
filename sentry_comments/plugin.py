@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.contrib import messages
 from django.core.mail import EmailMultiAlternatives
 from django.template import loader, Context
 from django.utils.translation import ugettext_lazy as _
@@ -53,6 +54,7 @@ class CommentsPlugin(MailPlugin):
                 comment.save()
                 if request.POST.get('sendmail', ''):
                     self._send_mail(comment, group)
+                messages.success(request, _(u'Comment added.'))
         query = GroupComments.objects.filter(group=group).order_by('-created')
         return self.render('sentry_comments/index.html', {
             'comments': query,

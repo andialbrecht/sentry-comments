@@ -23,6 +23,7 @@ Add Comment On Test Event
     Click Button  Post comment
     Page Should Contain  This is a test comment.
     Page Should Contain Link  Comments (1)
+    Page Should Contain  Comment added.
 
 
 Comment Count Is Updated On Event Page
