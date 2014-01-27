@@ -4,7 +4,7 @@ sentry-comments
 .. image:: https://travis-ci.org/andialbrecht/sentry-comments.png?branch=master
    :target: https://travis-ci.org/andialbrecht/sentry-comments
 
-sentry-comments is an extension for Sentry which lets you add comments
+sentry-comments ~~is~~ **was** an extension for Sentry which lets you add comments
 to sentry events.
 
 **Important Notice** Sentry (>=6.4) supports adding notes to events out-of-the-
