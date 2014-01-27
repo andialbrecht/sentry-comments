@@ -10,6 +10,9 @@ to sentry events.
 **Important Notice** Sentry (>=6.4) supports adding notes to events out-of-the-
 box. So there's no need for this extension anymore.
 
+You'll find a script to migrate away from sentry-comments here:
+https://gist.github.com/andialbrecht/8644979
+
 .. image:: https://sentry-comments.readthedocs.org/en/latest/_images/event.png
    :width: 90%
 
